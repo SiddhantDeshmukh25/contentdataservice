@@ -1,0 +1,33 @@
+1- Equity fileds
+    name , isin, rating , price , company Description
+
+    1) we should have one scheduler - will take equity from upstream like IB
+
+Equity fields:
+Ticker Symbol:AAPL
+CUSIP: 037833100
+SEDOL: 2046251
+Exchange: NasdaqIndustry Sector:
+
+// we have source - assetWorkBench
+all data metadata about equity
+1. we have created asset and equity table
+TODO:
+Now we create dummy service which will give us data related to equity and it will treat as upstream
+
+ private String tickerSymbol;
+ private String Company Name;
+ private String Currency;
+ private String exchange;
+
+ISIN
+tickerSymbol;
+Company Name
+Security Type (Equity/Common Stock)
+Exchange
+Currency
+Country of Issue
+Sector
+Industry
+Trading Status
+Issue Date
