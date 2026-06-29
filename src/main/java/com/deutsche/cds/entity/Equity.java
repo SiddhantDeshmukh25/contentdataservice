@@ -7,6 +7,7 @@ import lombok.Data;
 @Table(name = "equity")
 @Data
 public class Equity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -14,4 +15,7 @@ public class Equity {
     private String companyName;
     private String currency;
     private String exchange;
+
+    @OneToOne
+    private Asset asset;
 }

@@ -3,6 +3,7 @@ package com.deutsche.cds.service.equity;
 import com.deutsche.cds.Repository.AssetRepository;
 import com.deutsche.cds.Repository.EquityRepository;
 import com.deutsche.cds.entity.Asset;
+import com.deutsche.cds.entity.Equity;
 import com.deutsche.cds.response.NseResponse;
 import com.deutsche.cds.service.externalapi.NseService;
 import org.springframework.stereotype.Service;
@@ -26,8 +27,25 @@ public class EquitySourcingServiceImpl implements EquitySourcingService {
     public String sourceDataFromNse() {
         //call upstream
         List<NseResponse> responseFromNse = nseService.getResponseFromNse();
+        for (NseResponse response : responseFromNse){
 
+            Asset asset = new Asset();
+            asset.setName(response.getCompanyName());
+            asset.setSymbol(response.getIsin());
 
-        return "";
+            Equity equity = new Equity();
+            equity.setCompanyName(response.getCompanyName());
+            equity.setCurrency(response.getCurrency());
+            equity.setExchange(response.getExchange());
+            equity.setTickerSymbol(response.getTickerSymbol());
+            equity.setAsset(asset);
+            asset.setEquity(equity);
+
+            Asset save = assetRepository.save(asset);
+            System.out.println(save);
+
+        }
+
+        return "Successfully source data from upstream and sync to db";
     }
 }
